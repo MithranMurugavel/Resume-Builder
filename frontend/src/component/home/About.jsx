@@ -1,13 +1,16 @@
 import React from 'react'
-import Image from './assets/Image2.jpg'
+import Image1 from './assets/Image2.jpg'
+import Image2 from './assets/Image3.jpg'
 const About = () => {
   return (
-    <div className = "features">
+    <div className = "features" id="about">
       <div className="bg-amber-400/75 py-16 px-4 flex flex-col items-center">
+      
     <div className="text-center flex flex-col items-center mb-12">
-        <h1 className="text-[30px] font-medium text-slate-900 mb-4 text-shadow-lg">
+         <h1 className=" border-2 border-solid rounded-lg p-4 text-[30px] font-medium text-slate-900 mb-4 text-shadow-lg font-extrabold">Build a professional resume in minutes. Choose a modern template, customize your details and create a resume that showcases your skills, experience and achievements</h1>
+        <h2 className="text-[24px] font-medium text-slate-900 mb-2 text-shadow-lg">
             Features you avail. in this website
-        </h1>
+        </h2>
         <p className="text-black text-slate-600 max-w-md leading-relaxed">
             Can Create a simple CV's as your self
         </p>
@@ -34,7 +37,7 @@ const About = () => {
 
     
         <div className="bg-white border border-zinc-200 rounded-lg overflow-hidden transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-lg p-4 flex flex-col items-center">
-            <img src ={Image} alt="Multicolor Option" className="w-full max-w-56 object-cover mb-6"/>
+            <img src ={Image1} alt="Multicolor Option" className="w-full max-w-56 object-cover mb-6"/>
             <div className="w-full max-w-56 flex flex-col h-full">
                 <h3 className="text-base font-medium text-slate-900 mb-2">
                     Customize Profile Color
@@ -53,7 +56,7 @@ const About = () => {
 
     
         <div className="bg-white border border-zinc-200 rounded-lg overflow-hidden transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:shadow-lg p-4 flex flex-col items-center">
-            <img src="https://assets.prebuiltui.com/components/feature-sections/ai-avatar-image3.png" alt="AI Paintings" className="w-full max-w-56 object-cover mb-6"/>
+            <img src={Image2} alt="AI Paintings" className="w-full max-w-56 object-cover mb-6"/>
             <div className="w-full max-w-56 flex flex-col h-full">
                 <h3 className="text-base font-medium text-slate-900 mb-2">
                     Default categories
