@@ -6,3 +6,15 @@
   font-weight: 400;
   font-style: normal;
 }
+@layer base{
+  button{                              
+    @apply cursor-pointer;
+  }
+}
+
+.features p{
+  font-style: italic;
+}
+.features p:hover{
+  color:rgb(184, 15, 15);
+}
