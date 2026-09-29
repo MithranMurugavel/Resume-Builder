@@ -1,9 +1,13 @@
 import React from 'react'
-
+import {Outlet} from 'react-router-dom';
+import Navbar from '../component/Navbar';
 const Layout = () => {
   return (
     <div>
-      Layout
+      <div className ="min-h-screen bg-grey-50" >
+      <Navbar/>
+      <Outlet/>
+    </div>
     </div>
   )
 }
