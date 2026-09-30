@@ -27,7 +27,29 @@ const Dashboard = () => {
   const ResumeUpload = async (event) => {
     event.preventDefault();
     setUploadExisting(false);
-    navigate('builder/res123')
+    navigate(`builder/${resume._id}`)
+  }
+
+  const editTitle = async (event) => {
+    event.preventDefault();
+     setData(prev =>
+        prev.map(resume =>
+            resume._id === editResumeId
+                ? { ...resume, title: title }
+                : resume
+        )
+    );
+
+    setEditResumeId('');
+    setTitle('');
+  }
+
+  const deleteResume = async (resumeId) => {
+    const confirm = window.confirm("Are you sure want to delete this file");
+
+    if (confirm) {
+      setData(prev => prev.filter(resume => resume._id !== resumeId))
+    }
   }
   useEffect(() => {
     loadData()
@@ -53,15 +75,15 @@ const Dashboard = () => {
             data.map((resume, index) => {
               const basecolor = colors[index % colors.length];
               return (
-                <button key={index} className="relative w-full sm:max-w-38 h-48 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer" style={{ background: `linear-gradient(135deg, ${basecolor}10,${basecolor}40)`, borderColor: basecolor + '40' }}>
+                <button onClick={() => { navigate(`builder/${resume._id}`) }} key={index} className="relative w-full sm:max-w-40 h-52 flex flex-col items-center justify-center rounded-lg gap-2 border group hover:shadow-lg transition-all duration-300 cursor-pointer" style={{ background: `linear-gradient(135deg, ${basecolor}10,${basecolor}40)`, borderColor: basecolor + '40' }}>
 
                   <FilePenLineIcon className="size-7 group-hover:scale-105 transition-all " style={{ color: basecolor }} />
                   <p className="text-sm group-hover:scale-105 transition-all px-2 text-center" style={{ color: basecolor }}>{resume.title}</p>
-                  <p className="absolute text-[11px] bottom-3 text-slate-400 group-hover:text-slate-500 transition-all duration-300 px-2 text-center" style={{ color: basecolor }}>Updated on{new Date(resume.updatedAt).toLocaleDateString()}</p>
+                  <p className="absolute text-[11px] bottom-3 text-slate-400 group-hover:text-slate-500 transition-all duration-300 px-2 text-center" style={{ color: basecolor }}>Updated on {new Date(resume.updatedAt).toLocaleDateString()}</p>
 
-                  <div className="absolute top-1 right-1 group-hover:flex items-center hidden">
-                    <Trash2Icon className="size-7 p-1.5 text-slate-700 hover:bg-white/50 rounded-lg hover:scale-123" />
-                    <PencilIcon className="size-7 p-1.5 hover:bg-white/50 rounded-lg text-slate-700 hover:scale-123 " />
+                  <div onClick={e => e.stopPropagation()} className="absolute top-1 right-1 group-hover:flex items-center hidden">
+                    <Trash2Icon onClick={() => { deleteResume(resume._id) }} className="size-7 p-1.5 text-slate-700 hover:bg-white/50 rounded-lg hover:scale-123" />
+                    <PencilIcon onClick={() => { setEditResumeId(resume._id); setTitle(resume.title) }} className="size-7 p-1.5 hover:bg-white/50 rounded-lg text-slate-700 hover:scale-123 " />
                   </div>
                 </button>
               )
@@ -73,12 +95,11 @@ const Dashboard = () => {
             <form onSubmit={ResumeCreate} onClick={() => setCreateResume(false)} className="fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center">
               <div className="relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6" onClick={e => e.stopPropagation()}>
                 <h2 className="text-xl font-bold mb-4">Create a Resume</h2>
-                <input type="text" placeholder="Enter your file name" className="w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600 border rounded" required />
+                <input onchange ={(e)=>{setTitle(e.target.value)}} value={title}type="text" placeholder="Enter your file name" className="w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600 border rounded" required />
                 <div className="flex justify-end">
                   <button className="w-24 py-2 bg-black text-white rounded-xl hover:bg-blue-600 transition-color" type="submit">Create</button>
                 </div>
                 <XIcon onClick={() => { setCreateResume(false); setTitle('') }} className="absolute top-4 right-4 text-black rounded hover:bg-red-400 hover:text-white cursor-pointer" />
-
               </div>
             </form>
           )
@@ -117,11 +138,49 @@ const Dashboard = () => {
                 <div className="flex justify-end">
                   <button className="w-24 py-2 bg-black text-white rounded-xl hover:bg-blue-600 transition-color" type="submit">Upload</button>
                 </div>
-                <XIcon onClick={() => { setUploadExisting(false); setTitle(''); setResume('')}} className="absolute top-4 right-4 text-black rounded hover:bg-red-400 hover:text-white cursor-pointer" />
+                <XIcon onClick={() => { setUploadExisting(false); setTitle(''); setResume("")}} className="absolute top-4 right-4 text-black rounded hover:bg-red-400 hover:text-white cursor-pointer" />
               </div>
             </form>
           )
         }
+
+        {
+         editResumeId && (
+    <form
+        onSubmit={editTitle}
+        onClick={() => setEditResumeId('')}
+        className="fixed inset-0 bg-black/70 backdrop-blur z-10 flex items-center justify-center">
+        <div
+            className="relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6"
+            onClick={(e) => e.stopPropagation()}>
+            <h2 className="text-xl font-bold mb-4">
+                Edit a Resume
+            </h2>
+
+            <input
+                onChange={(e) => setTitle(e.target.value)}
+                value={title}
+                type="text"
+                placeholder="Enter your file name"
+                className="w-full px-4 py-2 mb-4 border rounded"
+                required/>
+            <div className="flex justify-end">
+                <button
+                    className="w-24 py-2 bg-black text-white rounded-xl hover:bg-blue-600 transition-colors"
+                    type="submit">
+                    Update
+                </button>
+            </div>
+
+            <XIcon
+                onClick={() => {
+                    setEditResumeId('');
+                    setTitle('');
+                }}
+                className="absolute top-4 right-4 cursor-pointer"/>
+        </div>
+    </form>
+)}
       </div>
     </div>
   )
