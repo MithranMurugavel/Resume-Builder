@@ -88,12 +88,12 @@ const ResumeBuilder = () => {
                     {/* Form Content */}
               <div>
                       {active.id == "personal" && (
-                         <PersonalInfo data={resume.personal_info} onChange={(data)=>setResume(prev=>({...prev,personal_info:data}))} />
+                         <PersonalInfo data={resume.personal_info} onChange={(data)=>setResume(prev=>({...prev,personal_info:data}))} rmvBackground={rmvBackground} setrmvBackground={setrmvBackground}/>
                       )}
               </div>
             </div>
           </div>
-
+ 
           {/* RightSection */}
           <div></div>
         </div>

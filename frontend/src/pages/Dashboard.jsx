@@ -95,7 +95,7 @@ const Dashboard = () => {
             <form onSubmit={ResumeCreate} onClick={() => setCreateResume(false)} className="fixed inset-0 bg-black/70 backdrop-blur bg-opacity-50 z-10 flex items-center justify-center">
               <div className="relative bg-slate-50 border shadow-md rounded-lg w-full max-w-sm p-6" onClick={e => e.stopPropagation()}>
                 <h2 className="text-xl font-bold mb-4">Create a Resume</h2>
-                <input onchange ={(e)=>{setTitle(e.target.value)}} value={title}type="text" placeholder="Enter your file name" className="w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600 border rounded" required />
+                <input onChange ={(e)=>{setTitle(e.target.value)}} value={title}type="text" placeholder="Enter your file name" className="w-full px-4 py-2 mb-4 focus:border-green-600 ring-green-600 border rounded" required />
                 <div className="flex justify-end">
                   <button className="w-24 py-2 bg-black text-white rounded-xl hover:bg-blue-600 transition-color" type="submit">Create</button>
                 </div>
