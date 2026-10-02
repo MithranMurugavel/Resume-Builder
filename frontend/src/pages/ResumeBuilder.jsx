@@ -4,6 +4,7 @@ import { dummyResumeData } from '../assets/assets';
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react';
 import PersonalInfo from '../component/PersonalInfo';
 import ResumePreview from '../component/ResumePreview';
+import TemplateSelector from '../component/TemplateSelector';
 
 const ResumeBuilder = () => {
 
@@ -62,25 +63,27 @@ const ResumeBuilder = () => {
               <hr className="absolute top-0 left-0 right-0 border-2 border-gray-400" />
               <hr className="absolute top-0 left-0 h-1 bg-gradient-to-r from-green-500 to-green-600 border-none transition-all duration-1000" style={{ width: `${activeSection * 100 / (section.length - 1)}%` }} />
 
-              <div className="flex justify-between items-center mb-6 border-b border-gray-300 py-1">
-                {/* Left side */}
-                <div>
+              <div className="grid grid-cols-3 items-center mb-6 border-b border-gray-300 py-1 gap-16">
+                {/* Left side of form nav*/}
+                <div className="mr-24">
                   {activeSection !== 0 && (
                     <button onClick={() => setActiveSection((prev) => Math.max(prev - 1, 0))}
-                      className="flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all duration-500"
-                    >
+                      className="flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all duration-500">
                       <ChevronLeft className="size-4" />
                       Previous
                     </button>
                   )}
                 </div>
-                {/* Right side */}
+                {/* Middle of form nav */}
+                <div>
+                  <TemplateSelector selectedtemplates={resume.template} onChange={(template) => setResume(prev => ({...prev, template}))} />
+                </div>
+                {/* Right side form nav */}
                 <div>
                   <button onClick={() => { setActiveSection((prev) => Math.min(prev + 1, section.length - 1)) }}
-                    className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all ${activeSection === section.length - 1 ? 'opacity-50' : ''
+                    className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all pl-14 ${activeSection === section.length - 1 ? 'opacity-50' : ''
                       }`}
-                    disabled={activeSection === section.length - 1}
-                  >
+                    disabled={activeSection === section.length - 1}>
                     Next
                     <ChevronRight className="size-4" />
                   </button>
@@ -98,9 +101,8 @@ const ResumeBuilder = () => {
           {/* RightSection */}
           <div className="lg:col-span-7 max-lg:mt-6">
             <div>
-            
             </div>
-                <ResumePreview data={resume} template={resume.template} accentColor={resume.accent_color}/>
+            <ResumePreview data={resume} template={resume.template} accentColor={resume.accent_color} />
           </div>
         </div>
       </div>
