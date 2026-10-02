@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets';
 import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react';
 import PersonalInfo from '../component/PersonalInfo';
+import ResumePreview from '../component/ResumePreview';
 
 const ResumeBuilder = () => {
 
@@ -85,17 +86,22 @@ const ResumeBuilder = () => {
                   </button>
                 </div>
               </div>
-                    {/* Form Content */}
+              {/* Form Content */}
               <div>
-                      {active.id == "personal" && (
-                         <PersonalInfo data={resume.personal_info} onChange={(data)=>setResume(prev=>({...prev,personal_info:data}))} rmvBackground={rmvBackground} setrmvBackground={setrmvBackground}/>
-                      )}
+                {active.id == "personal" && (
+                  <PersonalInfo data={resume.personal_info} onChange={(data) => setResume(prev => ({ ...prev, personal_info: data }))} rmvBackground={rmvBackground} setrmvBackground={setrmvBackground} />
+                )}
               </div>
             </div>
           </div>
- 
+
           {/* RightSection */}
-          <div></div>
+          <div className="lg:col-span-7 max-lg:mt-6">
+            <div>
+            
+            </div>
+                <ResumePreview data={resume} template={resume.template} accentColor={resume.accent_color}/>
+          </div>
         </div>
       </div>
     </div>
