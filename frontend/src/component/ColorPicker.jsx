@@ -24,7 +24,7 @@ const ColorPicker = ({ selectedColor, onChange }) => {
                 type="color"
                 value={selectedColor}
                 onChange={(e) => {onChange(e.target.value)}}
-                className="absolute left-1/2 -translate-x-1/2 mt-2 w-12 h-12 opacity-0 cursor-pointer"/>
+                className="absolute left-1/2 -translate-x-1/2 mt-2 w-12 h-12 opacity-0 cursor-pointer pointer-events-none"/>
         </div>
     );
 };

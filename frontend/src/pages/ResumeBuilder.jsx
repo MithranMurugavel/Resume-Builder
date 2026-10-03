@@ -38,7 +38,6 @@ const ResumeBuilder = () => {
 
   const active = section[activeSection];
   const loadData = async () => {
-
     const res = dummyResumeData.find(resume => resume._id === resumeId)
 
     if (res) {
@@ -46,7 +45,6 @@ const ResumeBuilder = () => {
       document.title = res.title;
     }
   }
-
   useEffect(() => {
     loadData();
   }, [])
@@ -98,12 +96,13 @@ const ResumeBuilder = () => {
                   <PersonalInfo data={resume.personal_info} onChange={(data) => setResume(prev => ({ ...prev, personal_info: data }))} rmvBackground={rmvBackground} setrmvBackground={setrmvBackground} />
                 )}
                 {
-                  <ProfileSummary data={resume.professional_summary} onChange={(data)=>{setResume(prev=>({...prev,professional_summary:data}))}}/>
+                  active.id == "summary" && (
+                    <ProfileSummary data={resume.professional_summary} onChange={(data) => { setResume(prev => ({ ...prev, professional_summary: data })) }} />
+                  )
                 }
               </div>
             </div>
           </div>
-
           {/* RightSection */}
           <div className="lg:col-span-7 max-lg:mt-6">
             <div>
@@ -115,5 +114,4 @@ const ResumeBuilder = () => {
     </div>
   )
 }
-
 export default ResumeBuilder
