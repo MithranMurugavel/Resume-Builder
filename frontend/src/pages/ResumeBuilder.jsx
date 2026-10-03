@@ -5,6 +5,8 @@ import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIc
 import PersonalInfo from '../component/PersonalInfo';
 import ResumePreview from '../component/ResumePreview';
 import TemplateSelector from '../component/TemplateSelector';
+import ColorPicker from '../component/ColorPicker';
+import ProfileSummary from '../component/ProfileSummary';
 
 const ResumeBuilder = () => {
 
@@ -75,8 +77,9 @@ const ResumeBuilder = () => {
                   )}
                 </div>
                 {/* Middle of form nav */}
-                <div>
-                  <TemplateSelector selectedtemplates={resume.template} onChange={(template) => setResume(prev => ({...prev, template}))} />
+                <div className="flex justify-center gap-2 ml-8">
+                  <TemplateSelector selectedtemplates={resume.template} onChange={(template) => setResume(prev => ({ ...prev, template }))} />
+                  <ColorPicker selectedColor={resume.accent_color} onChange={(accent_color) => setResume((prev) => ({ ...prev, accent_color }))} />
                 </div>
                 {/* Right side form nav */}
                 <div>
@@ -94,6 +97,9 @@ const ResumeBuilder = () => {
                 {active.id == "personal" && (
                   <PersonalInfo data={resume.personal_info} onChange={(data) => setResume(prev => ({ ...prev, personal_info: data }))} rmvBackground={rmvBackground} setrmvBackground={setrmvBackground} />
                 )}
+                {
+                  <ProfileSummary data={resume.professional_summary} onChange={(data)=>{setResume(prev=>({...prev,professional_summary:data}))}}/>
+                }
               </div>
             </div>
           </div>
