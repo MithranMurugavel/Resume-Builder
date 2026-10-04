@@ -7,11 +7,13 @@ import ResumePreview from '../component/ResumePreview';
 import TemplateSelector from '../component/TemplateSelector';
 import ColorPicker from '../component/ColorPicker';
 import ProfileSummary from '../component/ProfileSummary';
+import Experience from '../component/Experience';
+import Alert from '../component/Alert';
 
 const ResumeBuilder = () => {
 
   const { resumeId } = useParams();
-
+  const [error, setError] = useState("");
   const [resume, setResume] = useState({
     _id: '',
     title: '',
@@ -45,6 +47,30 @@ const ResumeBuilder = () => {
       document.title = res.title;
     }
   }
+  const validateSection = () => {
+
+    if (active.id === "personal") {
+      const { full_name, email } = resume.personal_info;
+
+      if(!full_name?.trim() && !email?.trim()){
+        setError("Full Name and Email is required");
+        return false
+      }
+      if (!full_name?.trim()) {
+        setError("Full Name is required");
+        return false;
+      }
+
+      if (!email?.trim()) {
+        setError("Email Address is required");
+        return false;
+      }
+    }
+
+    setError("");
+    return true;
+  };
+
   useEffect(() => {
     loadData();
   }, [])
@@ -81,10 +107,18 @@ const ResumeBuilder = () => {
                 </div>
                 {/* Right side form nav */}
                 <div>
-                  <button onClick={() => { setActiveSection((prev) => Math.min(prev + 1, section.length - 1)) }}
+                  <button
+                    onClick={() => {
+                      if (!validateSection()) return;
+
+                      setActiveSection((prev) =>
+                        Math.min(prev + 1, section.length - 1)
+                      );
+                    }}
                     className={`flex items-center gap-1 p-3 rounded-lg text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all pl-14 ${activeSection === section.length - 1 ? 'opacity-50' : ''
                       }`}
-                    disabled={activeSection === section.length - 1}>
+                    disabled={activeSection === section.length - 1}
+                  >
                     Next
                     <ChevronRight className="size-4" />
                   </button>
@@ -100,8 +134,21 @@ const ResumeBuilder = () => {
                     <ProfileSummary data={resume.professional_summary} onChange={(data) => { setResume(prev => ({ ...prev, professional_summary: data })) }} />
                   )
                 }
+                {
+                  active.id == "experience" && (
+                    <Experience data={resume.experience} onChange={(value) => { setResume(prev => ({ ...prev, experience: value })) }} />
+                  )
+                }
               </div>
             </div>
+            {error && (
+              <div className="fixed bottom-5 right-5 z-50">
+                <Alert
+                  message={error}
+                  onClose={() => setError("")}
+                />
+              </div>
+            )}
           </div>
           {/* RightSection */}
           <div className="lg:col-span-7 max-lg:mt-6">

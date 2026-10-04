@@ -10,12 +10,14 @@ const ProfileSummary = ({ data, onChange }) => {
                     <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>Profile Summary</h3>
                     <p className='text-sm text-gray-500'>Add summary for your resume</p>
                 </div>
-                <button className="flex items-center gap-2 px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200  hover:pl-5.5 hover:pr-5.5 transition-all duration-200">
-                    <Sparkles className='size-4'/> AI Enhancer
+                <button
+                    className="flex items-center gap-2 px-3 py-2 text-sm bg-purple-100 text-purple-700 rounded-md hover:bg-purple-200 hover:scale-105 transition-all duration-200 ease-out">
+                    <Sparkles className="size-4" />
+                    AI Enhancer
                 </button>
             </div>
             <div>
-                <textarea value={data || ""} onChange={(e) => onChange(e.target.value)} rows={7} className="w-full p-3 px-4 mt-2 border text-sm border-gray-400 rounded-lg focus:ring focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none" placeholder='Write a compelling professional summary that highlights your key strengths and career objectives...'/>
+                <textarea value={data || ""} onChange={(e) => onChange(e.target.value)} rows={7} className="w-full p-3 px-4 mt-2 border text-sm border-gray-400 rounded-lg focus:ring focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors resize-none" placeholder='Write a compelling professional summary that highlights your key strengths and career objectives...' />
             </div>
         </div>
     )
