@@ -39,17 +39,16 @@ const Experience = ({ data, onChange }) => {
                     <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>Experience</h3>
                     <p className='text-sm text-gray-500'>Add your job experience</p>
                 </div>
-                <button onClick={addExperience} className={`flex items-center gap-2 px-3 py-2 text-sm text-purple-700 rounded-md transition-all duration-200 ease-out ${data.length > 2 ? "text-slate-600 bg-gray-300":" bg-purple-100  hover:bg-purple-200 hover:scale-105"}`}>
+                <button onClick={addExperience} className={`flex items-center gap-2 px-3 py-2 text-sm text-purple-700 rounded-md transition-all duration-200 ease-out ${data.length > 2 ? "text-slate-300 bg-gray-100":" bg-purple-100  hover:bg-purple-200 hover:scale-105"}`}>
                     <Plus className="size-4" />
                     Add Experience
                 </button>
             </div>
             {isError && (
-              <div className="fixed bottom-5 right-5 z-50">
+              <div className="fixed top-18 left-5 z-50">
                 <Alert
                   message={isError}
-                  onClose={()=>{setIsError("")}}
-                />
+                  onClose={()=>{setIsError("")}}/>
               </div>
             )}
             {

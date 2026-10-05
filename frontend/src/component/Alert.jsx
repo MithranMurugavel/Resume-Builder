@@ -21,7 +21,7 @@ const Alert = ({message,onClose}) => {
                 onClick={onClose}
                 className="mr-3 active:scale-90 transition-all"
             >
-                <X className="size-5" />
+                <X className="size-5 ml-2" />
             </button>
 
         </div>

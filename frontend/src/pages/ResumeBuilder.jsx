@@ -9,6 +9,8 @@ import ColorPicker from '../component/ColorPicker';
 import ProfileSummary from '../component/ProfileSummary';
 import Experience from '../component/Experience';
 import Alert from '../component/Alert';
+import Education from '../component/Education';
+import Projects from '../component/Projects';
 
 const ResumeBuilder = () => {
 
@@ -139,10 +141,20 @@ const ResumeBuilder = () => {
                     <Experience data={resume.experience} onChange={(value) => { setResume(prev => ({ ...prev, experience: value })) }} />
                   )
                 }
+                {
+                  active.id == "education" && (
+                    <Education data={resume.education} onChange={(value)=>{setResume(prev=>({...prev,education:value}))}}/>
+                  )
+                }
+                {
+                  active.id == "projects" && (
+                    <Projects data={resume.project} onChange={(value)=>{setResume(prev=>({...prev,project:value}))}}/>
+                  )
+                }
               </div>
             </div>
             {error && (
-              <div className="fixed bottom-5 right-5 z-50">
+              <div className="fixed top-18 left-5 z-50">
                 <Alert
                   message={error}
                   onClose={() => setError("")}

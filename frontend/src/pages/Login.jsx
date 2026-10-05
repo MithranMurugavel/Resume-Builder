@@ -5,7 +5,7 @@ const Login = () => {
 
     const query = new URLSearchParams(window.location.search)
     const urlstate = query.get('state');
-  const [state,setstate] = useState(urlstate || "login");
+  const [state, setstate] = useState(urlstate || "login");
 
   const [formData,setformData] = useState({
     name:'',

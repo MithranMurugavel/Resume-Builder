@@ -8,8 +8,8 @@ const Navbar = () => {
         navigate("/",{replace:true});
     }
   return (
-    <div className="shadow bg-white">
-      <nav className = "flex item-center justify-between max-w-7xl mx-auto px-4 py-3.5 text-slate-800 transition-all">
+    <div className="w-full shadow  bg-white">
+      <nav className = "flex items-center justify-between max-w-7xl mx-auto px-4 py-3.5 text-slate-800 transition-all">
         <Link to='/'>
             <img src="logo.svg" className="h-11 w-auto"/>
         </Link>
