@@ -25,6 +25,11 @@ const TemplateSelector = ({ selectedtemplates, onChange }) => {
             id: "modern",
             name: "Modern",
             preview: "Modernized structure for your resume with high profiled typography"
+        },
+        {
+            id:"unique",
+            name:"Unique",
+            preview:"Elegent unique template for prefessional info appearance"
         }
     ]
     return (

@@ -3,6 +3,7 @@ import ModernTemplate from '../assets/templates/ModernTemplate'
 import MinimalTemplate from '../assets/templates/MinimalTemplate';
 import MinimalImageTemplate from '../assets/templates/MinimalImageTemplate';
 import ClassicTemplate from '../assets/templates/ClassicTemplate';
+import UniqueTemplate from '../assets/templates/Styled2';
 
 const ResumePreview = ({ data, template, accentColor, classes }) => {
 
@@ -14,6 +15,8 @@ const ResumePreview = ({ data, template, accentColor, classes }) => {
                 return <MinimalTemplate data={data} accentColor={accentColor} />
             case "minimal-image":
                 return <MinimalImageTemplate data={data} accentColor={accentColor} />
+            case "unique":
+                return <UniqueTemplate data={data} accentColor={accentColor}/>
             default:
                 return <ClassicTemplate data={data} accentColor={accentColor} />
         }
