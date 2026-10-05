@@ -11,6 +11,7 @@ import Experience from '../component/Experience';
 import Alert from '../component/Alert';
 import Education from '../component/Education';
 import Projects from '../component/Projects';
+import SkillSection from '../component/SkillSection';
 
 const ResumeBuilder = () => {
 
@@ -149,6 +150,11 @@ const ResumeBuilder = () => {
                 {
                   active.id == "projects" && (
                     <Projects data={resume.project} onChange={(value)=>{setResume(prev=>({...prev,project:value}))}}/>
+                  )
+                }
+                {
+                  active.id == "skills" && (
+                    <SkillSection data={resume.skills} onChange={(value)=>{setResume(prev=>({...prev,skills:value}))}}/>
                   )
                 }
               </div>
