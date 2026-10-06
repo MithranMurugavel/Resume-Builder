@@ -196,7 +196,7 @@ const ResumeBuilder = () => {
             <div className='relative w-full'>
               <div className='absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2'>
                 {
-                  <button onClick={handleShare} className={`flex items-center gap-2 p-2 rounded-lg text-sm bg-blue-100 rounded-md  ${resume.public ? " border hover:bg-blue-200 hover:scale-105 transition-all duration-200 ease-out text-blue-500 hover:text-blue-600 ":"bg-slate-200 text-gray-400 transition-all"}`}>
+                  <button onClick={handleShare} className={`flex items-center gap-2 p-2 rounded-lg text-sm bg-blue-100 rounded-md  ${resume.public ? " border hover:bg-blue-200 hover:scale-105 transition-all duration-200 ease-out text-blue-500 hover:text-blue-600 ":"bg-slate-200 text-gray-400 transition-all"}`} disabled={!resume.public}>
                     <Share2/> Share
                   </button>
                 }
