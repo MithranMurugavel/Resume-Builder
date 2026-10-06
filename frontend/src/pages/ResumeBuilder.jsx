@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { dummyResumeData } from '../assets/assets';
-import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, FileText, FolderIcon, GraduationCap, Sparkles, User } from 'lucide-react';
+import { ArrowLeftIcon, Briefcase, ChevronLeft, ChevronRight, Download, Eye, EyeOff, FileText, FolderIcon, GraduationCap, Share2, Sparkles, User } from 'lucide-react';
 import PersonalInfo from '../component/PersonalInfo';
 import ResumePreview from '../component/ResumePreview';
 import TemplateSelector from '../component/TemplateSelector';
@@ -55,7 +55,7 @@ const ResumeBuilder = () => {
     if (active.id === "personal") {
       const { full_name, email } = resume.personal_info;
 
-      if(!full_name?.trim() && !email?.trim()){
+      if (!full_name?.trim() && !email?.trim()) {
         setError("Full Name and Email is required");
         return false
       }
@@ -74,6 +74,26 @@ const ResumeBuilder = () => {
     return true;
   };
 
+  const Visibility = ()=>{
+
+    setResume(prev=>({...prev,public:!resume.public}));
+  }
+   const handleShare =()=>{
+
+    const frontURL = window.location.href.split('/app')[0];
+    const fullURL = frontURL + '/view/'+resumeId;
+
+    if(navigator.share){
+      navigator.share({url:fullURL,text:"My Resume"});
+    }
+    else{
+      alert("Share not supported in this browser");
+    }
+   }
+
+   const download =()=>{
+    window.print();
+   }
   useEffect(() => {
     loadData();
   }, [])
@@ -144,20 +164,23 @@ const ResumeBuilder = () => {
                 }
                 {
                   active.id == "education" && (
-                    <Education data={resume.education} onChange={(value)=>{setResume(prev=>({...prev,education:value}))}}/>
+                    <Education data={resume.education} onChange={(value) => { setResume(prev => ({ ...prev, education: value })) }} />
                   )
                 }
                 {
                   active.id == "projects" && (
-                    <Projects data={resume.project} onChange={(value)=>{setResume(prev=>({...prev,project:value}))}}/>
+                    <Projects data={resume.project} onChange={(value) => { setResume(prev => ({ ...prev, project: value })) }} />
                   )
                 }
                 {
                   active.id == "skills" && (
-                    <SkillSection data={resume.skills} onChange={(value)=>{setResume(prev=>({...prev,skills:value}))}}/>
+                    <SkillSection data={resume.skills} onChange={(value) => { setResume(prev => ({ ...prev, skills: value })) }} />
                   )
                 }
               </div>
+              <button className='border p-2 pr-3 pl-3 mt-6 rounded-lg text-green-400 hover:ring shadow-md hover:scale-105 transition-all duration-200 text-sm'>
+                Save Changes
+              </button>
             </div>
             {error && (
               <div className="fixed top-18 left-5 z-50">
@@ -170,7 +193,33 @@ const ResumeBuilder = () => {
           </div>
           {/* RightSection */}
           <div className="lg:col-span-7 max-lg:mt-6">
-            <div>
+            <div className='relative w-full'>
+              <div className='absolute bottom-3 left-0 right-0 flex items-center justify-end gap-2'>
+                {
+                  <button onClick={handleShare} className={`flex items-center gap-2 p-2 rounded-lg text-sm bg-blue-100 rounded-md  ${resume.public ? " border hover:bg-blue-200 hover:scale-105 transition-all duration-200 ease-out text-blue-500 hover:text-blue-600 ":"bg-slate-200 text-gray-400 transition-all"}`}>
+                    <Share2/> Share
+                  </button>
+                }
+                {
+                  resume.public ? (
+                    <button className='flex gap-2 border p-2 rounded-lg items-center gap-2 border p-2 rounded-lg text-sm bg-purple-100 text-purple-500 rounded-md hover:bg-purple-200 hover:scale-105 transition-all duration-200 ease-out' onClick={Visibility}>
+                      <Eye /> Public
+                    </button>
+                  ) :
+                    (
+                      <button className='flex items-center gap-2 border p-2 rounded-lg text-sm bg-purple-100 text-purple-500 rounded-md hover:bg-purple-200 hover:scale-105 transition-all duration-200 ease-out' onClick={Visibility}>
+                        <EyeOff /> Private
+                      </button>
+                    )
+                }
+                {
+                  <button onClick={download} className={`flex items-center gap-2 p-2 rounded-lg text-sm bg-green-100 rounded-md border hover:bg-green-200 hover:scale-105 transition-all duration-200 ease-out text-green-600`}>
+                    <Download/> Download
+                  </button>
+                }
+
+              </div>
+
             </div>
             <ResumePreview data={resume} template={resume.template} accentColor={resume.accent_color} />
           </div>
