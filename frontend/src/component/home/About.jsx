@@ -4,7 +4,7 @@ import Image2 from './assets/Image3.jpg'
 const About = () => {
   return (
     <div className = "features" id="about">
-      <div className="bg-amber-400/75 py-16 px-4 flex flex-col items-center">
+      <div className="bg-purple-300/75 py-16 px-4 flex flex-col items-center">
       
     <div className="text-center flex flex-col items-center mb-12">
          <h1 className=" border-2 border-solid rounded-lg p-4 text-[30px] font-medium text-slate-900 mb-4 text-shadow-lg font-extrabold">Build a professional resume in minutes. Choose a modern template, customize your details and create a resume that showcases your skills, experience and achievements</h1>

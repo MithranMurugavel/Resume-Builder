@@ -19,8 +19,7 @@ const Projects = ({data,onChange}) => {
         onChange([...data, Project]);
 
     }
-    console.log(data.length);
-    const removeProjects = (index) => {
+   const removeProjects = (index) => {
         const update = data.filter((_, id) => id !== index);
         onChange(update);
     }

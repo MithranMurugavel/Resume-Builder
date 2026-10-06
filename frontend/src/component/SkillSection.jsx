@@ -9,7 +9,8 @@ const SkillSection = ({ data, onChange }) => {
     const addSkill = () => {
 
         if(data.length>=12){
-            setIsError("Max no. of skills added")
+            setIsError("Max no. of skills added");
+            setNewSkill("")
             return;
         }
         if (newSkill.trim() && !data.includes(newSkill.trim())) {
@@ -29,7 +30,6 @@ const SkillSection = ({ data, onChange }) => {
             addSkill();
         }
     }
-    console.log(data);
     return (
         <div>
             <div>
@@ -76,7 +76,8 @@ const SkillSection = ({ data, onChange }) => {
                 <div className="fixed top-18 left-5 z-50">
                     <Alert
                         message={isError}
-                        onClose={() => { setIsError("") }} />
+                        onClose={() => { setIsError("") }}/>
+                       
                 </div>
             )}
         </div>

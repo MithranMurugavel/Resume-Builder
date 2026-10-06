@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom'
 const Hero = () => {
     return (
-        <section className="min-h-screen bg-amber-400/75 text-white flex flex-col">
+        <section className="min-h-screen bg-purple-300 text-white flex flex-col">
 
             <nav className="w-full flex items-center justify-between px-5 py-4 sm:px-8 md:px-12 lg:px-24 border-b border-white/25 ">
                 <img
@@ -26,7 +26,7 @@ const Hero = () => {
             <div className="flex-1 flex flex-col items-center justify-center text-center px-5 sm:px-8 py-20 md:py-28">
 
 
-                <h1 className="text-4xl sm:text-1xl md:text-6xl lg:text-4xl font-semibold leading-tight max-w-3xl text-shadow-lg">
+                <h1 className="text-4xl sm:text-1xl md:text-6xl lg:text-4xl font-semibold leading-tight max-w-3xl text-shadow-md text-indigo-500">
                     Build Your Own Presence
                 </h1>
 

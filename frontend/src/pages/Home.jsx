@@ -5,7 +5,7 @@ import Hero from '../component/home/Hero'
 
 const Home = () => {
   return (
-    <div>
+    <div className='bg-purple-300'>
       <Banner/>
       <Hero/>
       <About/>

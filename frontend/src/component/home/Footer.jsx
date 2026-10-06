@@ -3,7 +3,7 @@ import React from 'react'
 const Footer = () => {
   return (
     <>
-      <footer className="px-6 pt-8 md:px-16 lg:px-36 w-full text-black bg-linear-to-t to-amber-400/75" id="contact">
+      <footer className="px-6 pt-8 md:px-16 lg:px-36 w-full text-black bg-linear-to-b to-purple-200" id="contact">
             <div className="flex flex-col md:flex-row justify-between w-full gap-10 border-b border-black pb-10">
                 <div className="md:max-w-96">
                     <img alt="" class="h-11 cursor-text" src="logo.svg" />
