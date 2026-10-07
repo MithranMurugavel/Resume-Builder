@@ -1,3 +1,4 @@
+import Resume from "../models/Resume.js";
 import User from "../models/User.js";
 import jwt from "jsonwebtoken"
 
@@ -97,7 +98,7 @@ export const getUserById = async (req,res) => {
         if(!user){
             return res.status(404).json({
                 message:"User not found",
-                data:this.data
+                data
             })
         }
 
@@ -113,5 +114,25 @@ export const getUserById = async (req,res) => {
             message: "Error occured in get data by id"
         })
 
+    }
+}
+
+//controller for getting a resume
+//GET: /api/user/resume
+
+export const getUserResume = async (req,res)=>{
+    try{
+        const userId = req.userId;
+
+        const resume = await Resume.find({userId})
+        return res.status(200).json({
+            message:"Resume data found",
+            data:resume
+        })
+    }
+    catch(error){
+        return res.status(404).json({
+            message:"Resume data not found"
+        })
     }
 }
